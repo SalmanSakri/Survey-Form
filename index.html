@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Survey Form</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -16,68 +16,99 @@
             <p id="description">Thank you for taking the time to help us improve the platform</p>
         </header>
 
-
+        <!-- Updated form with correct structure -->
         <form id="survey-form">
             <div class="form-group">
-                <label id="name-label">Enter your name:</label>
+                <label for="name">Enter your name:</label>
                 <input id="name" name="name" class="form-control" type="text" placeholder="Enter your name" required />
             </div>
             <div class="form-group">
-                <label id="email-label">Enter your email: </label>
-                <input id="email" type="email" class="form-control" placeholder="Enter your email" required />
+                <label for="email">Enter your email:</label>
+                <input id="email" name="email" type="email" class="form-control" placeholder="Enter your email"
+                    required />
             </div>
             <div class="form-group">
-                <label id="number-label">Enter your number: </label>
-                <input type="number" name="number" id="number" min="10" class="form-control"
-                    placeholder="number" required>
+                <label for="number">Enter your number:</label>
+                <input type="tel" name="number" id="number" class="form-control" placeholder="Enter your number"
+                    required />
             </div>
+
             <div class="form-group">
                 <p>Which option best describes your current role?</p>
-
-                <select id="dropdown" class="form-control">
-                    <option>Sudent</option>
-                    <option>Worker</option>
-
+                <select id="dropdown" name="role" class="form-control" required>
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="student">Student</option>
+                    <option value="worker">Worker</option>
                 </select>
             </div>
+
             <div class="form-group">
-                <p>this is survey form is beautiful ? </p>
-                <label for="">
-                    <input type="radio" name="group1" value="group1">Definitely
+                <p>Is this survey form beautiful?</p>
+                <label>
+                    <input type="radio" name="survey-beauty" value="Definitely" required> Definitely
                 </label>
-                <label for="">
-                    <input type="radio" name="group1" value="group1">Maybe
+                <label>
+                    <input type="radio" name="survey-beauty" value="Maybe"> Maybe
                 </label>
-                <label for="">
-                    <input type="radio" name="group1" value="group1">Not sure
+                <label>
+                    <input type="radio" name="survey-beauty" value="Not sure"> Not sure
                 </label>
             </div>
 
             <div class="form-group">
-                <p>whice is your favorite feature of this survey form</p>
-                <label for="">
-                    <input type="checkbox" value="Definitely" />frontend
+                <p>Which is your favorite feature of this survey form?</p>
+                <label>
+                    <input type="checkbox" name="feature" value="Frontend"> Frontend
                 </label>
-                <label for="">
-                    <input type="checkbox" value="Maybe" />color combination
+                <label>
+                    <input type="checkbox" name="feature" value="Color combination"> Color combination
                 </label>
-                <label for="">
-                    <input type="checkbox" value="ui/ux design"> UI/UX design
+                <label>
+                    <input type="checkbox" name="feature" value="UI/UX design"> UI/UX design
                 </label>
             </div>
-            <!-- textarea start -->
+
             <div class="form-group">
-                <p>Any thingh about you</p>
-                <textarea id="comments" class="input-textarea" name="comment" placeholder="Enter About you." required></textarea>
+                <p>Anything about you:</p>
+                <textarea id="comments" name="comments" class="input-textarea" placeholder="Enter About you."
+                    required></textarea>
             </div>
-            <!-- textarea start end -->
-            <!-- submit button  -->
+
             <div class="form-group">
-                <button id="submit" class="submit-button" type="submit">submit</button>
+                <button id="submit" class="submit-button" type="submit">Submit</button>
             </div>
-            <!-- submit button end  -->
         </form>
     </div>
+
+    <script>
+        // Optimized form submission and validation logic
+        console.log("hii")
+        const form = document.getElementById('survey-form').addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent form from submitting normally
+            console.log(e)
+            // Retrieve all form inputs
+            const name = document.getElementById('name').value.trim();
+            console.log(name)
+            // console.log(value.trim())
+            const email = document.getElementById('email').value.trim();
+            console.log(email)
+            const number = document.getElementById('number').value.trim();
+            const role = document.getElementById('dropdown').value;
+            const comments = document.getElementById('comments').value.trim();
+
+            // Validate fields
+            if (!name || !email || !number || !role || !comments) {
+                alert("Please fill in all required fields before submitting.");
+                return; // Stop the function if validation fails
+            }
+
+            // Success message if all fields are filled
+            alert(`${name} Your Form Is Submitted Successfully`);
+
+            // Clear the form after submission
+            document.getElementById('survey-form').reset();
+        });
+    </script>
 </body>
 
 </html>

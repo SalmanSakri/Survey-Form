@@ -65,7 +65,7 @@ body {
   button,
   select,
   textarea {
-    margin: 0;
+    margin: 4px;
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
